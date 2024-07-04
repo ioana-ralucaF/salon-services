@@ -1,0 +1,67 @@
+<mat-card class="service-card" appearance="raised">
+  <mat-card-header>
+    <mat-card-title>{{ service.name }}</mat-card-title>
+    <mat-card-subtitle class="details-container">
+      <div class="details-item">
+        <mat-icon>paid</mat-icon>
+        <div>{{ service.price }} {{ currency }}</div>
+      </div>
+      <div class="details-item">
+        <mat-icon>schedule</mat-icon>
+        <div>{{ service.duration }} mins</div>
+      </div>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    {{ service.description }}
+    @if(isDetailsView){
+    <mat-divider></mat-divider>
+    <div class="muted-header">Addons</div>
+    <mat-list>
+      @for (addon of service.addons; track addon.id) {
+      <mat-list-item>
+        <div class="details-container addon-option">
+          <div class="addon-name">
+            {{ addon.name }}
+          </div>
+          <div class="details-item">
+            <div>{{ addon.price }} {{ currency }}</div>
+          </div>
+          <div class="details-item">
+            <div>{{ addon.duration }} mins</div>
+          </div>
+          <mat-checkbox (click)="toggleAddon(addon)"> </mat-checkbox>
+        </div>
+      </mat-list-item>
+      }
+    </mat-list>
+    <mat-divider></mat-divider>
+    }
+  </mat-card-content>
+
+  <mat-card-actions class="card-actions-container">
+    @if(isDetailsView){
+    <div class="details-container">
+      <span class="muted-header">Total:</span>
+      <div class="details-item">
+        <mat-icon>paid</mat-icon>
+        <div>{{ totalPrice }} {{ currency }}</div>
+      </div>
+      <div class="details-item">
+        <mat-icon>schedule</mat-icon>
+        <div>{{ totalDuration }} mins</div>
+      </div>
+    </div>
+    }
+    <button
+      class="right-button"
+      mat-flat-button
+      (click)="onButtonClicked()"
+      [matTooltipDisabled]="!isDetailsView"
+      matTooltip="You can select as many addons as you want and then proceed with the booking"
+    >
+      {{ isDetailsView ? "Book" : "Details" }}
+    </button>
+  </mat-card-actions>
+</mat-card>

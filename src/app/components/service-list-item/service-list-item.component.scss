@@ -1,0 +1,38 @@
+@use "variables";
+
+.service-card {
+  min-height: 170px;
+  .card-actions-container {
+    margin-top: auto;
+  }
+
+  .details-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+    .details-item {
+      color: variables.$muted-color;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      &:first-of-type {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .addon-option {
+    .details-item {
+      width: 25%;
+    }
+    .addon-name {
+      width: 40%;
+      align-self: center;
+    }
+  }
+
+  mat-divider {
+    margin: 10px 0px;
+  }
+}

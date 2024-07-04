@@ -1,0 +1,10 @@
+@if (salonInfo$ | async; as salonInfo) {
+<div class="service-list-container">
+  @for (service of salonInfo.services; track service.id) {
+  <app-service-list-item
+    [service]="service"
+    [currency]="salonInfo.salon.currency || ''"
+  />
+  }
+</div>
+}

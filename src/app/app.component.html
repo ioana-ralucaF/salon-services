@@ -1,0 +1,5 @@
+<app-header [salonName]="(salonName$ | async) || ''" />
+
+<div class="content-container">
+  <router-outlet />
+</div>

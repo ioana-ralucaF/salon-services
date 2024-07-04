@@ -1,0 +1,32 @@
+@use "@angular/material" as mat;
+@use "variables";
+
+:root {
+  @include mat.all-component-themes(variables.$salon-theme);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: variables.$background-color;
+}
+
+h2 {
+  color: variables.$primary-color;
+  font-weight: 300;
+}
+
+.muted-header {
+  font-size: 20px;
+  color: variables.$muted-color;
+  margin-right: 10px;
+}
+
+.right-button {
+  margin-left: auto;
+}

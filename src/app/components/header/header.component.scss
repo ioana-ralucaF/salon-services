@@ -1,0 +1,25 @@
+@use "variables";
+
+.header-container {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  padding: 15px;
+  width: fit-content;
+  border-radius: 40px;
+  background-color: variables.$white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  img {
+    width: 35px;
+    height: 35px;
+    margin-right: 8px;
+  }
+  div {
+    font-weight: 500;
+    font-size: 26px;
+    color: variables.$primary-color;
+    align-self: center;
+  }
+}

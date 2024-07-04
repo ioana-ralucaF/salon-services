@@ -1,0 +1,21 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$salon-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$rose-palette,
+      tertiary: mat.$magenta-palette,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+$primary-color: mat.get-theme-color($salon-theme, primary);
+$muted-color: mat.get-theme-color($salon-theme, secondary, 60);
+$background-color: mat.get-theme-color($salon-theme, primary, 95);
+$white: #ffff;

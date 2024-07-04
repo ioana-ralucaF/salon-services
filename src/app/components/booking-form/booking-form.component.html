@@ -1,0 +1,96 @@
+<mat-card>
+  <div class="card-content">
+    <form [formGroup]="bookingForm" class="form-container">
+      <h2>Contact Details</h2>
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" />
+        <mat-error>
+          <ng-container
+            [ngTemplateOutlet]="errorMessage"
+            [ngTemplateOutletContext]="{
+              control: bookingForm.controls.firstName
+            }"
+          ></ng-container>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lastName" />
+        <mat-error>
+          <ng-container
+            [ngTemplateOutlet]="errorMessage"
+            [ngTemplateOutletContext]="{
+              control: bookingForm.controls.lastName
+            }"
+          ></ng-container>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+        <mat-icon matSuffix>mail</mat-icon>
+        <mat-error>
+          <ng-container
+            [ngTemplateOutlet]="errorMessage"
+            [ngTemplateOutletContext]="{ control: bookingForm.controls.email }"
+          ></ng-container>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phoneNumber" />
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-error>
+          <ng-container
+            [ngTemplateOutlet]="errorMessage"
+            [ngTemplateOutletContext]="{
+              control: bookingForm.controls.phoneNumber
+            }"
+          ></ng-container>
+        </mat-error>
+      </mat-form-field>
+    </form>
+    <div>
+      <h2>Service Details</h2>
+      <span class="muted-header">{{ serviceDetails.service.name }}</span>
+      <div class="details-container">
+        <span class="muted-header">Total:</span>
+        <div class="details-item">
+          <mat-icon>paid</mat-icon>
+          <div>
+            {{ serviceDetails.service | total : "price" }}
+            {{ serviceDetails.currency }}
+          </div>
+        </div>
+        <div class="details-item">
+          <mat-icon>schedule</mat-icon>
+          <div>{{ serviceDetails.service | total : "duration" }} mins</div>
+        </div>
+      </div>
+      @if((serviceDetails.service.addons | selectedAddons); as addons){
+      @if(addons.length){
+      <span class="muted-header"
+        >Addons: @for(addon of addons; track addon.id; let idx = $index){
+        <span class="addon-item"
+          >{{ addon.name }} @if(idx !== addons.length-1){<span>, </span>} </span
+        >}
+      </span>
+      } }
+    </div>
+  </div>
+  <div class="button-container">
+    <button class="right-button" mat-flat-button (click)="onSubmitForm()">
+      Submit
+    </button>
+  </div>
+</mat-card>
+
+<ng-template let-control="control" #errorMessage>
+  @if(control.errors?.required){ This field is required }
+  @if(control.errors?.email){ Please enter a valid email }
+  @if(control.errors?.pattern){ Value does not have the required format }
+</ng-template>
